@@ -59,7 +59,7 @@ Ngưỡng hiện tại còn false alarm/bỏ sót cao; cần label độc lập,
 
 ## 5. Cách chạy lại
 
-Từ repo sạch, Python ≥3.10, CPU, không cần GPU. Dùng requirements của đề bài; [versions đã chạy](../results/environment.json) và [requirements tái tạo](../src/requirements-repro.txt) ghi phiên bản cụ thể. Windows có thể thay `python` bằng `.venv\Scripts\python.exe` sau khi tạo venv và cài thư viện.
+Môi trường đã chạy: Python **3.13.15**, CPU, không cần GPU. [Versions đã chạy](../results/environment.json) và [requirements tái tạo](../src/requirements-repro.txt) ghi phiên bản cụ thể; các lệnh dưới đây dùng Python 3.13. Windows gọi trực tiếp `.venv\Scripts\python.exe` sau khi tạo venv.
 
 ```powershell
 python -m venv .venv
