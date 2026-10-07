@@ -1,0 +1,50 @@
+{
+  "all_outputs_equal": true,
+  "configurations_per_frame": 19,
+  "total_frame_configurations": 1900,
+  "outputs": {
+    "calibration_sweep_frames.csv": {
+      "rows": 1900,
+      "normalized_sha256": "cc8223dd2c1dbeb583cb977ba2ab11b4981931e4d8c8d3879a10de62e8166dad"
+    },
+    "calibration_sweep_objects.csv": {
+      "rows": 22287,
+      "normalized_sha256": "c6e6e09a078fc52f5fae6b3610c504cbb8f9f6d18690d99dec926be819e54c6f"
+    },
+    "calibration_sweep_summary.csv": {
+      "rows": 38,
+      "normalized_sha256": "0d9bc0937f6a13a55c389b6c71ce39d131897bfa3c97f11eca4870ce77682171"
+    },
+    "calibration_sweep_detector.csv": {
+      "rows": 4,
+      "normalized_sha256": "dedfa9382cdee4e961094ecf11784ab2fbefdb9e9bae2933b4c08b03ac169b22"
+    },
+    "calibration_sweep_predictions.csv": {
+      "rows": 774,
+      "normalized_sha256": "80412e36ced1f0525e615f5b4a2999895b3dc131aebe71014b926ff07030be79"
+    }
+  },
+  "scientific_invariants": "PASS",
+  "validation_source_commit": "54ea927",
+  "fresh_virtual_environment": true,
+  "report_commands_passed": true,
+  "all_png_pixels_equal": true,
+  "png_files": [
+    "alignment_score_threshold.png",
+    "fail_01_yaw_drift.png",
+    "fail_02_fov_metric_blind_spot.png",
+    "fail_03_alignment_score_miss.png",
+    "overlay_000000_r0.0_p0.0_y0.0_t0.0_0.0_0.0.png",
+    "overlay_000011_r0.0_p0.0_y0.0_t0.0_0.0_0.0.png",
+    "overlay_far.png",
+    "overlay_mid.png",
+    "overlay_near.png",
+    "overlay_scene-0103_010_r0.0_p0.0_y0.0_t0.0_0.0_0.0.png",
+    "pitch_vs_metrics.png",
+    "roll_vs_metrics.png",
+    "translation_vs_metrics.png",
+    "yaw_by_depth.png",
+    "yaw_vs_metrics.png"
+  ],
+  "demo_and_failure_selections_equal": true
+}

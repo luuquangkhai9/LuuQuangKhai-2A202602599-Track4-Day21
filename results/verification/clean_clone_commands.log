@@ -1,0 +1,278 @@
+.venv\Scripts\python.exe tools/verify_data.py --data-root data/kitti_mini
+data\kitti_mini: 80/80 file đúng, tổng 55.0 MB
+[PASS] Dữ liệu đầy đủ, dùng được.
+
+.venv\Scripts\python.exe tools/verify_data.py --data-root data/nuscenes_mini_subset
+data\nuscenes_mini_subset: 173/173 file đúng, tổng 74.0 MB
+[PASS] Dữ liệu đầy đủ, dùng được.
+
+.venv\Scripts\python.exe -m src.projection_checks
+[PASS] Synthetic reference: uv=[613.96414869 175.00653723], depth=9.72732
+[PASS] Analytic pinhole, half-open image bounds, depth, NaN/Inf and original mask
+[PASS] Zero homogeneous denominator and empty cloud
+[PASS] Rigid transform and transpose convention
+[PASS] Rotated 3D box, bottom center and h/w/l convention
+[PASS] Frozen denominator includes off-image points; physical sensor axes; original calibration unchanged
+
+.venv\Scripts\python.exe -m starter.data_health --data-root data/synthetic
+000000: n=23953 invalid=0.10% range_p95=57.8m empty_az_bins=0
+000001: n=23781 invalid=0.10% range_p95=58.3m empty_az_bins=0
+000002: n=23790 invalid=0.10% range_p95=58.2m empty_az_bins=0
+000003: n=22063 invalid=0.10% range_p95=58.3m empty_az_bins=0
+000004: n=23760 invalid=0.10% range_p95=58.6m empty_az_bins=0
+-> results\data_health.csv
+
+.venv\Scripts\python.exe -m starter.projection --data-root data/synthetic --frame 000000
+points=23953 inside_image=3910 (16.3%) -> results\figures\overlay_000000_r0.0_p0.0_y0.0_t0.0_0.0_0.0.png
+
+.venv\Scripts\python.exe -m starter.projection --data-root data/kitti_mini --frame 000011
+points=108004 inside_image=19946 (18.5%) -> results\figures\overlay_000011_r0.0_p0.0_y0.0_t0.0_0.0_0.0.png
+
+.venv\Scripts\python.exe -m starter.projection --data-root data/nuscenes_mini_subset --frame scene-0103_010
+points=34720 inside_image=3120 (9.0%) -> results\figures\overlay_scene-0103_010_r0.0_p0.0_y0.0_t0.0_0.0_0.0.png
+
+.venv\Scripts\python.exe -m src.run_calibration_qa --out-dir results/reproduced
+kitti: 1/20 000001
+kitti: 2/20 000004
+kitti: 3/20 000007
+kitti: 4/20 000008
+kitti: 5/20 000009
+kitti: 6/20 000010
+kitti: 7/20 000011
+kitti: 8/20 000012
+kitti: 9/20 000015
+kitti: 10/20 000016
+kitti: 11/20 000019
+kitti: 12/20 000021
+kitti: 13/20 000023
+kitti: 14/20 000025
+kitti: 15/20 000031
+kitti: 16/20 000032
+kitti: 17/20 000043
+kitti: 18/20 000048
+kitti: 19/20 000049
+kitti: 20/20 000061
+nuscenes: 1/80 scene-0103_000
+nuscenes: 2/80 scene-0103_001
+nuscenes: 3/80 scene-0103_002
+nuscenes: 4/80 scene-0103_003
+nuscenes: 5/80 scene-0103_004
+nuscenes: 6/80 scene-0103_005
+nuscenes: 7/80 scene-0103_006
+nuscenes: 8/80 scene-0103_007
+nuscenes: 9/80 scene-0103_008
+nuscenes: 10/80 scene-0103_009
+nuscenes: 11/80 scene-0103_010
+nuscenes: 12/80 scene-0103_011
+nuscenes: 13/80 scene-0103_012
+nuscenes: 14/80 scene-0103_013
+nuscenes: 15/80 scene-0103_014
+nuscenes: 16/80 scene-0103_015
+nuscenes: 17/80 scene-0103_016
+nuscenes: 18/80 scene-0103_017
+nuscenes: 19/80 scene-0103_018
+nuscenes: 20/80 scene-0103_019
+nuscenes: 21/80 scene-0103_020
+nuscenes: 22/80 scene-0103_021
+nuscenes: 23/80 scene-0103_022
+nuscenes: 24/80 scene-0103_023
+nuscenes: 25/80 scene-0103_024
+nuscenes: 26/80 scene-0103_025
+nuscenes: 27/80 scene-0103_026
+nuscenes: 28/80 scene-0103_027
+nuscenes: 29/80 scene-0103_028
+nuscenes: 30/80 scene-0103_029
+nuscenes: 31/80 scene-0103_030
+nuscenes: 32/80 scene-0103_031
+nuscenes: 33/80 scene-0103_032
+nuscenes: 34/80 scene-0103_033
+nuscenes: 35/80 scene-0103_034
+nuscenes: 36/80 scene-0103_035
+nuscenes: 37/80 scene-0103_036
+nuscenes: 38/80 scene-0103_037
+nuscenes: 39/80 scene-0103_038
+nuscenes: 40/80 scene-0103_039
+nuscenes: 41/80 scene-1094_000
+nuscenes: 42/80 scene-1094_001
+nuscenes: 43/80 scene-1094_002
+nuscenes: 44/80 scene-1094_003
+nuscenes: 45/80 scene-1094_004
+nuscenes: 46/80 scene-1094_005
+nuscenes: 47/80 scene-1094_006
+nuscenes: 48/80 scene-1094_007
+nuscenes: 49/80 scene-1094_008
+nuscenes: 50/80 scene-1094_009
+nuscenes: 51/80 scene-1094_010
+nuscenes: 52/80 scene-1094_011
+nuscenes: 53/80 scene-1094_012
+nuscenes: 54/80 scene-1094_013
+nuscenes: 55/80 scene-1094_014
+nuscenes: 56/80 scene-1094_015
+nuscenes: 57/80 scene-1094_016
+nuscenes: 58/80 scene-1094_017
+nuscenes: 59/80 scene-1094_018
+nuscenes: 60/80 scene-1094_019
+nuscenes: 61/80 scene-1094_020
+nuscenes: 62/80 scene-1094_021
+nuscenes: 63/80 scene-1094_022
+nuscenes: 64/80 scene-1094_023
+nuscenes: 65/80 scene-1094_024
+nuscenes: 66/80 scene-1094_025
+nuscenes: 67/80 scene-1094_026
+nuscenes: 68/80 scene-1094_027
+nuscenes: 69/80 scene-1094_028
+nuscenes: 70/80 scene-1094_029
+nuscenes: 71/80 scene-1094_030
+nuscenes: 72/80 scene-1094_031
+nuscenes: 73/80 scene-1094_032
+nuscenes: 74/80 scene-1094_033
+nuscenes: 75/80 scene-1094_034
+nuscenes: 76/80 scene-1094_035
+nuscenes: 77/80 scene-1094_036
+nuscenes: 78/80 scene-1094_037
+nuscenes: 79/80 scene-1094_038
+nuscenes: 80/80 scene-1094_039
+ dataset     axis  value unit  n_frames  n_points_mean  n_eligible_objects  n_object_points  fov_pct_mean  retention_pct  alignment_drop_pp  object_macro_retention_pct  object_macro_drop_pp  frame_pixel_p50_mean  frame_pixel_p95_mean
+   kitti baseline   0.00 none        20      119318.45                  82            45358     15.754347      62.588738           0.000000                   91.252360              0.000000              0.000000              0.000000
+   kitti  lateral  -0.10    m        20      119318.45                  82            45358     15.749959      62.687949          -0.099211                   91.089274              0.163086              6.011756             13.537128
+   kitti  lateral  -0.05    m        20      119318.45                  82            45358     15.751247      62.721019          -0.132281                   91.514436             -0.262076              3.005867              6.768506
+   kitti  lateral  -0.02    m        20      119318.45                  82            45358     15.752986      62.676926          -0.088187                   91.508570             -0.256210              1.202344              2.707389
+   kitti  lateral   0.02    m        20      119318.45                  82            45358     15.755983      62.527007           0.061731                   91.042002              0.210358              1.202341              2.707370
+   kitti  lateral   0.05    m        20      119318.45                  82            45358     15.758045      62.359451           0.229287                   90.574369              0.677990              3.005846              6.768391
+   kitti  lateral   0.10    m        20      119318.45                  82            45358     15.759984      61.876626           0.712113                   89.116320              2.136040              6.011671             13.536666
+   kitti    pitch  -1.00  deg        20      119318.45                  82            45358     16.515260      59.363288           3.225451                   77.100232             14.152127             13.003369             14.036594
+   kitti    pitch   1.00  deg        20      119318.45                  82            45358     15.019708      56.993254           5.595485                   72.082422             19.169937             13.050478             14.179479
+   kitti     roll  -1.00  deg        20      119318.45                  82            45358     15.745762      61.711275           0.877464                   89.775796              1.476564              4.925767             10.135096
+   kitti     roll   1.00  deg        20      119318.45                  82            45358     15.757348      62.101504           0.487235                   88.686288              2.566072              4.925753             10.135004
+   kitti      yaw  -3.00  deg        20      119318.45                  82            45358     15.731062      47.876891          14.711848                   36.867949             54.384411             43.801128             63.165126
+   kitti      yaw  -2.00  deg        20      119318.45                  82            45358     15.739962      53.648750           8.939989                   50.896778             40.355581             29.192795             41.984860
+   kitti      yaw  -1.00  deg        20      119318.45                  82            45358     15.745270      59.996032           2.592707                   73.327271             17.925088             14.593374             20.969026
+   kitti      yaw  -0.50  deg        20      119318.45                  82            45358     15.747734      62.183077           0.405662                   86.186049              5.066310              7.295793             10.482196
+   kitti      yaw   0.50  deg        20      119318.45                  82            45358     15.761232      61.151285           1.437453                   82.136506              9.115853              7.295129             10.477090
+   kitti      yaw   1.00  deg        20      119318.45                  82            45358     15.764451      58.313859           4.274880                   67.274344             23.978015             14.590491             20.952173
+   kitti      yaw   2.00  deg        20      119318.45                  82            45358     15.766110      52.480268          10.108470                   47.887842             43.364517             29.187890             41.910530
+   kitti      yaw   3.00  deg        20      119318.45                  82            45358     15.773976      47.420521          15.168217                   35.418066             55.834294             43.788655             62.875150
+nuscenes baseline   0.00 none        80       34718.80                 196            27106      8.726874      53.456799           0.000000                   79.521786              0.000000              0.000000              0.000000
+nuscenes  lateral  -0.10    m        80       34718.80                 196            27106      8.724067      53.360880           0.095920                   79.288127              0.233659              9.517916             25.337531
+nuscenes  lateral  -0.05    m        80       34718.80                 196            27106      8.726154      53.430975           0.025825                   79.417828              0.103959              4.758837             12.667947
+nuscenes  lateral  -0.02    m        80       34718.80                 196            27106      8.725255      53.405150           0.051649                   79.478436              0.043351              1.903506              5.066983
+nuscenes  lateral   0.02    m        80       34718.80                 196            27106      8.726153      53.490002          -0.033203                   79.518315              0.003472              1.903468              5.066721
+nuscenes  lateral   0.05    m        80       34718.80                 196            27106      8.728206      53.430975           0.025825                   79.425141              0.096646              4.758597             12.666312
+nuscenes  lateral   0.10    m        80       34718.80                 196            27106      8.728746      53.460488          -0.003689                   79.335165              0.186621              9.516953             25.330988
+nuscenes    pitch  -1.00  deg        80       34718.80                 196            27106      9.057376      51.656460           1.800339                   74.977231              4.544556             23.267953             26.830609
+nuscenes    pitch   1.00  deg        80       34718.80                 196            27106      8.344011      50.568140           2.888659                   70.921077              8.600709             23.314925             27.187226
+nuscenes     roll  -1.00  deg        80       34718.80                 196            27106      8.719927      53.198554           0.258245                   78.827997              0.693789              8.024913             13.834102
+nuscenes     roll   1.00  deg        80       34718.80                 196            27106      8.741308      53.423596           0.033203                   79.260164              0.261622              8.024791             13.832077
+nuscenes      yaw  -3.00  deg        80       34718.80                 196            27106      8.735382      45.794289           7.662510                   60.056595             19.465191             75.827180             93.347283
+nuscenes      yaw  -2.00  deg        80       34718.80                 196            27106      8.734452      49.756511           3.700288                   69.364811             10.156976             50.542624             62.121885
+nuscenes      yaw  -1.00  deg        80       34718.80                 196            27106      8.728738      52.604589           0.852210                   76.818899              2.702887             25.269163             31.058304
+nuscenes      yaw  -0.50  deg        80       34718.80                 196            27106      8.727266      53.209621           0.247178                   78.924737              0.597049             12.634068             15.536203
+nuscenes      yaw   0.50  deg        80       34718.80                 196            27106      8.723568      53.401461           0.055338                   78.972781              0.549005             12.633896             15.579598
+nuscenes      yaw   1.00  deg        80       34718.80                 196            27106      8.723716      52.700509           0.756290                   77.151497              2.370289             25.270882             31.225469
+nuscenes      yaw   2.00  deg        80       34718.80                 196            27106      8.717851      49.878256           3.578543                   70.302550              9.219236             50.551184             62.789923
+nuscenes      yaw   3.00  deg        80       34718.80                 196            27106      8.712022      45.919723           7.537077                   60.567625             18.954161             75.847750             94.892364
+ dataset split  threshold_pp  tp  fn  fp  tn      tpr      fpr  balanced_accuracy
+   kitti  test      2.175940  46   8   9  18 0.851852 0.333333           0.759259
+   kitti train      2.175940  48   6   6  21 0.888889 0.222222           0.833333
+nuscenes  test      1.145038 152  40  24  72 0.791667 0.250000           0.770833
+nuscenes train      1.145038 140  76  14  94 0.648148 0.129630           0.759259
+
+.venv\Scripts\python.exe -m src.verify_reproduction --reference results --candidate results/reproduced
+[PASS] calibration_sweep_frames.csv: 1900 rows, exact values/content
+[PASS] calibration_sweep_objects.csv: 22287 rows, exact values/content
+[PASS] calibration_sweep_summary.csv: 38 rows, exact values/content
+[PASS] calibration_sweep_detector.csv: 4 rows, exact values/content
+[PASS] calibration_sweep_predictions.csv: 774 rows, exact values/content
+[PASS] Full frame/config coverage, frozen denominator, missing-score handling and train/test separation
+
+.venv\Scripts\python.exe -m src.plot_calibration_qa --results-dir results --stage all
+[
+  {
+    "group": "near",
+    "dataset": "kitti",
+    "frame_id": "000032",
+    "object_id": 0,
+    "depth_m": 9.0
+  },
+  {
+    "group": "mid",
+    "dataset": "kitti",
+    "frame_id": "000010",
+    "object_id": 3,
+    "depth_m": 16.5
+  },
+  {
+    "group": "far",
+    "dataset": "kitti",
+    "frame_id": "000004",
+    "object_id": 0,
+    "depth_m": 38.26
+  }
+]
+[
+  {
+    "filename": "fail_01_yaw_drift.png",
+    "dataset": "kitti",
+    "frame_id": "000023",
+    "axis": "yaw",
+    "value": -3.0,
+    "object_id": 2,
+    "object_depth_m": 44.76,
+    "object_drop_pp": 100.0,
+    "object_n_points": 20,
+    "baseline_retention_pct": 100.0,
+    "retention_pct": 0.0,
+    "frame_fov_pct": 15.428694814470319,
+    "frame_alignment_drop_pp": 100.0,
+    "frame_pixel_p50": 44.589438879556454
+  },
+  {
+    "filename": "fail_02_fov_metric_blind_spot.png",
+    "dataset": "kitti",
+    "frame_id": "000023",
+    "axis": "yaw",
+    "value": -2.0,
+    "object_id": 2,
+    "object_depth_m": 44.76,
+    "object_drop_pp": 100.0,
+    "object_n_points": 20,
+    "baseline_retention_pct": 100.0,
+    "retention_pct": 0.0,
+    "frame_fov_pct": 15.431186260505598,
+    "frame_alignment_drop_pp": 100.0,
+    "frame_pixel_p50": 29.688804782476904,
+    "fov_change_pp": 0.004982889999999074
+  },
+  {
+    "filename": "fail_03_alignment_score_miss.png",
+    "dataset": "nuscenes",
+    "frame_id": "scene-1094_008",
+    "axis": "yaw",
+    "value": -3.0,
+    "object_id": 13,
+    "object_depth_m": 12.19443915,
+    "object_drop_pp": 70.0,
+    "object_n_points": 20,
+    "baseline_retention_pct": 100.0,
+    "retention_pct": 30.0,
+    "frame_fov_pct": 10.494360036832413,
+    "frame_alignment_drop_pp": 1.1023622047244095,
+    "frame_pixel_p50": 76.07603233772014,
+    "threshold_pp": 1.145038169,
+    "split": "test"
+  }
+]
+
+.venv\Scripts\python.exe tools/check_submission.py
+[PASS] report/REPORT.md đủ 6 mục
+[PASS] report/REPORT.md đã điền hết
+[PASS] report/REPORT.md có dòng **MSSV:** hợp lệ (chỉ chữ và số)
+[PASS] results/ có >= 1 bảng số liệu (.csv)
+[PASS] results/ có >= 1 ảnh/video demo
+[PASS] results/ có ảnh failure case (tên chứa 'fail')
+[PASS] Không có file > 20 MB
+[PASS] Không commit dữ liệu thô / checkpoint ngoài thư mục data/
+[PASS] Không commit .env
+[PASS] Không lộ API key / token
+
+KẾT QUẢ: SẴN SÀNG NỘP

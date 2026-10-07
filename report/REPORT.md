@@ -78,6 +78,7 @@ python -m venv .venv
 ```
 
 Runner xuất đủ 5 CSV và cấu hình; verifier so sánh tất cả CSV, danh sách frame/config và invariant mẫu số. `--help` của runner/plot mô tả tham số. Không ghi đè dữ liệu gốc. Sau khi stage file mới, chạy lại check_submission vì phần quét file lớn/secret của script chỉ xét file được Git theo dõi.
+Đã kiểm chứng trên một clone sạch với venv mới cài đúng requirements: 5 CSV khớp chính xác, tất cả 15 ảnh PNG tái tạo khớp từng pixel, demo/failure selection khớp. Bằng chứng: [verification JSON](../results/reproduction_verification.json) và [log các lệnh](../results/verification/clean_clone_commands.log).
 
 ## 6. Khai báo sử dụng AI
 
