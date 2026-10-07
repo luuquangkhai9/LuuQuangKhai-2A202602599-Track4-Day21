@@ -32,7 +32,13 @@ def velo_to_cam(points_xyz: np.ndarray, calib: KittiCalib) -> np.ndarray:
       3. Trả về 3 cột đầu.
     Tự kiểm: một điểm velodyne (10, 0, 0) phải có z_cam ~ 10 (phía trước camera).
     """
-    raise NotImplementedError("TODO(CP2): cài đặt velo_to_cam")
+    points_xyz = np.asarray(points_xyz, dtype=np.float64)
+    if points_xyz.ndim != 2 or points_xyz.shape[1] != 3:
+        raise ValueError("points_xyz phải có shape (N, 3)")
+    homogeneous = np.column_stack((points_xyz, np.ones(len(points_xyz))))
+    # Giữ nguyên thứ tự/số hàng; cam_to_image sẽ loại NaN/Inf bằng mask.
+    with np.errstate(invalid="ignore"):
+        return (homogeneous @ calib.T_cam_velo.T)[:, :3]
 
 
 def cam_to_image(points_cam: np.ndarray, P2: np.ndarray, image_shape: tuple[int, ...],
@@ -52,7 +58,27 @@ def cam_to_image(points_cam: np.ndarray, P2: np.ndarray, image_shape: tuple[int,
       3. Chia cho s để có (u, v). Chỉ chia với điểm có depth > min_depth.
       4. Lọc theo kích thước ảnh image_shape[:2] = (H, W).
     """
-    raise NotImplementedError("TODO(CP2): cài đặt cam_to_image")
+    points_cam = np.asarray(points_cam, dtype=np.float64)
+    P2 = np.asarray(P2, dtype=np.float64)
+    if points_cam.ndim != 2 or points_cam.shape[1] != 3:
+        raise ValueError("points_cam phải có shape (N, 3)")
+    if P2.shape != (3, 4) or not np.isfinite(P2).all():
+        raise ValueError("P2 phải là ma trận hữu hạn (3, 4)")
+    height, width = image_shape[:2]
+    if height <= 0 or width <= 0 or not np.isfinite(min_depth) or min_depth < 0:
+        raise ValueError("Kích thước ảnh phải dương và min_depth phải hữu hạn, không âm")
+    mask = np.zeros(len(points_cam), dtype=bool)
+    candidates = np.flatnonzero(np.isfinite(points_cam).all(axis=1)
+                                & (points_cam[:, 2] > min_depth))
+    homogeneous = np.column_stack((points_cam[candidates], np.ones(len(candidates))))
+    projected = homogeneous @ P2.T
+    safe = np.isfinite(projected).all(axis=1) & (projected[:, 2] > 1e-12)
+    candidates, projected = candidates[safe], projected[safe]
+    uv = projected[:, :2] / projected[:, 2:3]
+    inside = (np.isfinite(uv).all(axis=1) & (uv[:, 0] >= 0) & (uv[:, 0] < width)
+              & (uv[:, 1] >= 0) & (uv[:, 1] < height))
+    mask[candidates[inside]] = True
+    return uv[inside], points_cam[mask, 2], mask
 
 
 def project_velo_to_image(points: np.ndarray, calib: KittiCalib, image_shape: tuple[int, ...]):

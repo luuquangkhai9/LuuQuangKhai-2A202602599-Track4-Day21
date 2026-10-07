@@ -1,0 +1,23 @@
+[
+  {
+    "group": "near",
+    "dataset": "kitti",
+    "frame_id": "000032",
+    "object_id": 0,
+    "depth_m": 9.0
+  },
+  {
+    "group": "mid",
+    "dataset": "kitti",
+    "frame_id": "000010",
+    "object_id": 3,
+    "depth_m": 16.5
+  },
+  {
+    "group": "far",
+    "dataset": "kitti",
+    "frame_id": "000004",
+    "object_id": 0,
+    "depth_m": 38.26
+  }
+]
