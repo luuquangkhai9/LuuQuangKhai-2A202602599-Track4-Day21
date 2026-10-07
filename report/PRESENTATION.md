@@ -1,6 +1,5 @@
 # Nội dung trình bày 3 phút — Lưu Quang Khải, H210, 2A202602599
 
-Đây là bản chuẩn bị; học viên cần tự tập nói và chạy lại trước khi trình bày.
 
 ## 0:00–0:30 — Câu hỏi và claim
 
