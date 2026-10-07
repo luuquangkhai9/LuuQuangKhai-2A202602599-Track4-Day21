@@ -1,0 +1,53 @@
+[
+  {
+    "filename": "fail_01_yaw_drift.png",
+    "dataset": "kitti",
+    "frame_id": "000023",
+    "axis": "yaw",
+    "value": -3.0,
+    "object_id": 2,
+    "object_depth_m": 44.76,
+    "object_drop_pp": 100.0,
+    "object_n_points": 20,
+    "baseline_retention_pct": 100.0,
+    "retention_pct": 0.0,
+    "frame_fov_pct": 15.428694814470319,
+    "frame_alignment_drop_pp": 100.0,
+    "frame_pixel_p50": 44.589438879556454
+  },
+  {
+    "filename": "fail_02_fov_metric_blind_spot.png",
+    "dataset": "kitti",
+    "frame_id": "000023",
+    "axis": "yaw",
+    "value": -2.0,
+    "object_id": 2,
+    "object_depth_m": 44.76,
+    "object_drop_pp": 100.0,
+    "object_n_points": 20,
+    "baseline_retention_pct": 100.0,
+    "retention_pct": 0.0,
+    "frame_fov_pct": 15.431186260505598,
+    "frame_alignment_drop_pp": 100.0,
+    "frame_pixel_p50": 29.688804782476904,
+    "fov_change_pp": 0.004982889999999074
+  },
+  {
+    "filename": "fail_03_alignment_score_miss.png",
+    "dataset": "nuscenes",
+    "frame_id": "scene-1094_008",
+    "axis": "yaw",
+    "value": -3.0,
+    "object_id": 13,
+    "object_depth_m": 12.19443915,
+    "object_drop_pp": 70.0,
+    "object_n_points": 20,
+    "baseline_retention_pct": 100.0,
+    "retention_pct": 30.0,
+    "frame_fov_pct": 10.494360036832413,
+    "frame_alignment_drop_pp": 1.1023622047244095,
+    "frame_pixel_p50": 76.07603233772014,
+    "threshold_pp": 1.145038169,
+    "split": "test"
+  }
+]
