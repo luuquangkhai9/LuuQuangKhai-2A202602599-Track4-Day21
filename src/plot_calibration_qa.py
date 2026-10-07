@@ -23,12 +23,24 @@ def save_image(path, image):
         raise IOError(f"Cannot save {path}")
 
 
-def banner(image, title, subtitle=""):
-    out = cv2.copyMakeBorder(image, 64, 34, 0, 0, cv2.BORDER_CONSTANT, value=(245, 245, 245))
+def banner(image, title, subtitle="", footer=True):
+    out = cv2.copyMakeBorder(image, 64, 34 if footer else 0, 0, 0, cv2.BORDER_CONSTANT, value=(245, 245, 245))
     cv2.putText(out, title, (12, 26), cv2.FONT_HERSHEY_SIMPLEX, .65, (20, 20, 20), 2, cv2.LINE_AA)
     cv2.putText(out, subtitle, (12, 51), cv2.FONT_HERSHEY_SIMPLEX, .48, (35, 35, 35), 1, cv2.LINE_AA)
-    cv2.putText(out, "Sources: KITTI Vision Benchmark Suite / nuScenes (Motional)",
-                (12, out.shape[0] - 11), cv2.FONT_HERSHEY_SIMPLEX, .45, (35, 35, 35), 1, cv2.LINE_AA)
+    if footer:
+        cv2.putText(out, "Sources: KITTI Vision Benchmark Suite / nuScenes (Motional)",
+                    (12, out.shape[0] - 11), cv2.FONT_HERSHEY_SIMPLEX, .45, (35, 35, 35), 1, cv2.LINE_AA)
+    return out
+
+
+def fit_image(image, width, height):
+    """Letterbox; giữ tỷ lệ hình học của crop khi phóng to evidence."""
+    scale = min(width / image.shape[1], height / image.shape[0])
+    resized = cv2.resize(image, (max(1, round(image.shape[1] * scale)),
+                                max(1, round(image.shape[0] * scale))))
+    out = np.full((height, width, 3), 235, dtype=np.uint8)
+    x, y = (width - resized.shape[1]) // 2, (height - resized.shape[0]) // 2
+    out[y:y + resized.shape[0], x:x + resized.shape[1]] = resized
     return out
 
 
@@ -119,9 +131,9 @@ def failure_figure(row, objects, roots, figures, filename, description):
         view = draw_box2d(view, obj.bbox, color=(0, 255, 255))
         retained = int(match[indices].sum())
         panels.append(cv2.resize(view, (900, round(h * 900 / w))))
-        crop = cv2.resize(view[ya:yb, xa:xb], (900, 360))
+        crop = fit_image(view[ya:yb, xa:xb], 900, 360)
         crops.append(banner(crop, f"{label}: {retained}/{len(indices)} = {100 * retained / len(indices):.1f}%",
-                            f"{obj.type}, camera z={obj.location[2]:.1f}m; green=inside box, red=outside; yellow=GT"))
+                            f"{obj.type}, camera z={obj.location[2]:.1f}m; green=inside box, red=outside; yellow=GT", footer=False))
     assembled = np.vstack((np.hstack(panels), np.hstack(crops)))
     save_image(figures / filename, banner(assembled,
                f"{dataset} {frame_id}: {description}",

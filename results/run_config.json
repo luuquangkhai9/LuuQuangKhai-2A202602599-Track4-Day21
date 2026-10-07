@@ -1,0 +1,230 @@
+{
+  "seed": 42,
+  "randomness": "none: all points and frames",
+  "datasets": [
+    {
+      "data_root": "data/kitti_mini",
+      "dataset": "kitti",
+      "frames": [
+        "000001",
+        "000004",
+        "000007",
+        "000008",
+        "000009",
+        "000010",
+        "000011",
+        "000012",
+        "000015",
+        "000016",
+        "000019",
+        "000021",
+        "000023",
+        "000025",
+        "000031",
+        "000032",
+        "000043",
+        "000048",
+        "000049",
+        "000061"
+      ]
+    },
+    {
+      "data_root": "data/nuscenes_mini_subset",
+      "dataset": "nuscenes",
+      "frames": [
+        "scene-0103_000",
+        "scene-0103_001",
+        "scene-0103_002",
+        "scene-0103_003",
+        "scene-0103_004",
+        "scene-0103_005",
+        "scene-0103_006",
+        "scene-0103_007",
+        "scene-0103_008",
+        "scene-0103_009",
+        "scene-0103_010",
+        "scene-0103_011",
+        "scene-0103_012",
+        "scene-0103_013",
+        "scene-0103_014",
+        "scene-0103_015",
+        "scene-0103_016",
+        "scene-0103_017",
+        "scene-0103_018",
+        "scene-0103_019",
+        "scene-0103_020",
+        "scene-0103_021",
+        "scene-0103_022",
+        "scene-0103_023",
+        "scene-0103_024",
+        "scene-0103_025",
+        "scene-0103_026",
+        "scene-0103_027",
+        "scene-0103_028",
+        "scene-0103_029",
+        "scene-0103_030",
+        "scene-0103_031",
+        "scene-0103_032",
+        "scene-0103_033",
+        "scene-0103_034",
+        "scene-0103_035",
+        "scene-0103_036",
+        "scene-0103_037",
+        "scene-0103_038",
+        "scene-0103_039",
+        "scene-1094_000",
+        "scene-1094_001",
+        "scene-1094_002",
+        "scene-1094_003",
+        "scene-1094_004",
+        "scene-1094_005",
+        "scene-1094_006",
+        "scene-1094_007",
+        "scene-1094_008",
+        "scene-1094_009",
+        "scene-1094_010",
+        "scene-1094_011",
+        "scene-1094_012",
+        "scene-1094_013",
+        "scene-1094_014",
+        "scene-1094_015",
+        "scene-1094_016",
+        "scene-1094_017",
+        "scene-1094_018",
+        "scene-1094_019",
+        "scene-1094_020",
+        "scene-1094_021",
+        "scene-1094_022",
+        "scene-1094_023",
+        "scene-1094_024",
+        "scene-1094_025",
+        "scene-1094_026",
+        "scene-1094_027",
+        "scene-1094_028",
+        "scene-1094_029",
+        "scene-1094_030",
+        "scene-1094_031",
+        "scene-1094_032",
+        "scene-1094_033",
+        "scene-1094_034",
+        "scene-1094_035",
+        "scene-1094_036",
+        "scene-1094_037",
+        "scene-1094_038",
+        "scene-1094_039"
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "axis": "baseline",
+      "value": 0.0,
+      "unit": "none"
+    },
+    {
+      "axis": "yaw",
+      "value": -3,
+      "unit": "deg"
+    },
+    {
+      "axis": "yaw",
+      "value": -2,
+      "unit": "deg"
+    },
+    {
+      "axis": "yaw",
+      "value": -1,
+      "unit": "deg"
+    },
+    {
+      "axis": "yaw",
+      "value": -0.5,
+      "unit": "deg"
+    },
+    {
+      "axis": "yaw",
+      "value": 0.5,
+      "unit": "deg"
+    },
+    {
+      "axis": "yaw",
+      "value": 1,
+      "unit": "deg"
+    },
+    {
+      "axis": "yaw",
+      "value": 2,
+      "unit": "deg"
+    },
+    {
+      "axis": "yaw",
+      "value": 3,
+      "unit": "deg"
+    },
+    {
+      "axis": "lateral",
+      "value": -0.1,
+      "unit": "m"
+    },
+    {
+      "axis": "lateral",
+      "value": -0.05,
+      "unit": "m"
+    },
+    {
+      "axis": "lateral",
+      "value": -0.02,
+      "unit": "m"
+    },
+    {
+      "axis": "lateral",
+      "value": 0.02,
+      "unit": "m"
+    },
+    {
+      "axis": "lateral",
+      "value": 0.05,
+      "unit": "m"
+    },
+    {
+      "axis": "lateral",
+      "value": 0.1,
+      "unit": "m"
+    },
+    {
+      "axis": "pitch",
+      "value": -1,
+      "unit": "deg"
+    },
+    {
+      "axis": "pitch",
+      "value": 1,
+      "unit": "deg"
+    },
+    {
+      "axis": "roll",
+      "value": -1,
+      "unit": "deg"
+    },
+    {
+      "axis": "roll",
+      "value": 1,
+      "unit": "deg"
+    }
+  ],
+  "classes": [
+    "Car",
+    "Pedestrian",
+    "Cyclist",
+    "Bicycle"
+  ],
+  "min_object_points": 20,
+  "min_depth_m": 0.1,
+  "nuScenes_ego_motion": true,
+  "object_membership": "frozen baseline camera-frame 3D boxes, no padding",
+  "depth_bins": "camera z of label bottom center: [0,15), [15,30), [30,infinity)",
+  "threshold_split": "KITTI sorted IDs even-index train / odd-index test; nuScenes day train / night test",
+  "positive_definition": "abs(yaw)>=1 degree; controls baseline and +/-0.5 degree",
+  "nuScenes_label_caveat": "2D labels derived from 3D boxes; yaw-only camera boxes approximate full rotation",
+  "sensor_axes": "KITTI forward=x,left=y; nuScenes forward=y,left=-x; yaw=up(z)"
+}

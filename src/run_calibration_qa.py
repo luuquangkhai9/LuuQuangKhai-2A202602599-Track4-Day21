@@ -78,10 +78,13 @@ def calibrate_detector(frames):
         if yaw.empty:
             continue
         ids = sorted(yaw.frame_id.unique())
-        train_ids = ids[::2] if dataset == "kitti" else [i for i in ids if i.startswith("scene-0103_")]
+        train_ids = ids[::2] if dataset != "nuscenes" else [i for i in ids if i.startswith("scene-0103_")]
         yaw["split"] = np.where(yaw.frame_id.isin(train_ids), "train", "test")
         yaw["actionable_drift"] = yaw.value.abs() >= 1
         train = yaw[yaw.split == "train"]
+        if train.empty:
+            print(f"No training frames for {dataset}: threshold not fitted", flush=True)
+            continue
         values = np.sort(train.alignment_drop_pp.unique())
         thresholds = np.unique(np.r_[0., values - 1e-9, values + 1e-9])
         best = None
@@ -108,7 +111,11 @@ def calibrate_detector(frames):
                                  balanced_accuracy=.5 * (tp / (tp + fn) + tn / (tn + fp))))
         predictions.append(yaw[["dataset", "frame_id", "axis", "value", "split", "alignment_drop_pp",
                                 "threshold_pp", "actionable_drift", "detected", "fov_pct", "pixel_shift_p50"]])
-    return pd.DataFrame(detector), pd.concat(predictions, ignore_index=True)
+    columns = ["dataset", "frame_id", "axis", "value", "split", "alignment_drop_pp",
+               "threshold_pp", "actionable_drift", "detected", "fov_pct", "pixel_shift_p50"]
+    return pd.DataFrame(detector, columns=["dataset", "split", "threshold_pp", "tp", "fn", "fp", "tn",
+                                           "tpr", "fpr", "balanced_accuracy"]), (
+        pd.concat(predictions, ignore_index=True) if predictions else pd.DataFrame(columns=columns))
 
 
 def main():
